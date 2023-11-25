@@ -16,8 +16,6 @@ export const getSector = async (req, res) => {
 
 export const postUserSector = async (req, res) => {
   const { name, sector, terms } = req.body
-  if (!name || !sector || !terms) return res.status(400).json({ message: 'All fields are required' })
-
   try {
     connectDB()
     const user = await User.findOne({ name })
