@@ -14,9 +14,9 @@ app.use(express.json())
 app.use(morgan('dev'))
 
 // Routes
-// app.get('/', (req, res) => {
-//   res.send('<h1>Hello Im Nicolas Gonzalez welcome to my Coding Challenge api </h1>')
-// })
+app.get('/', (req, res) => {
+  res.send('<h1>Hello Im Nicolas Gonzalez welcome to my Coding Challenge api </h1>')
+})
 apiRoutes(app)
 
 // Connect to DB and start server
