@@ -1,4 +1,4 @@
-import { connectDB, disconnectDB } from '../db.js'
+import { connectDB } from '../db.js'
 import Sector from '../models/sector.model.js'
 import User from '../models/user.model.js'
 
@@ -9,8 +9,6 @@ export const getSector = async (req, res) => {
     return res.status(200).json(sectors)
   } catch (err) {
     res.status(404).json({ message: err.message })
-  } finally {
-    await disconnectDB()
   }
 }
 
