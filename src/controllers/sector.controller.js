@@ -20,7 +20,20 @@ export const postUserSector = async (req, res) => {
     if (user) return res.status(409).json({ error: 'User already exists' })
     const newUser = new User({ name, sector, terms })
     await newUser.save()
-    return res.status(201).json({ message: 'User created successfully' })
+    return res.status(201).json({ user: newUser, message: 'User created successfully' })
+  } catch (err) {
+    return res.status(500).json({ error: err })
+  }
+}
+
+export const updateUserSector = async (req, res) => {
+  const { name, sector } = req.body
+  const { id } = req.params
+  try {
+    connectDB()
+    const user = await User.findByIdAndUpdate(id, { name: name.toLowerCase(), sector })
+    if (!user) return res.status(404).json({ error: 'User not found' })
+    return res.status(200).json({ user, message: 'User updated successfully' })
   } catch (err) {
     return res.status(500).json({ error: err })
   }
