@@ -16,8 +16,6 @@ export const postUserSector = async (req, res) => {
   const { name, sector, terms } = req.body
   try {
     connectDB()
-    const user = await User.findOne({ name })
-    if (user) return res.status(409).json({ error: 'User already exists' })
     const newUser = new User({ name, sector, terms })
     await newUser.save()
     return res.status(201).json({ user: newUser, message: 'User created successfully' })
